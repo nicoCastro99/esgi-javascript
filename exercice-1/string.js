@@ -5,12 +5,12 @@ const ucfirst = (chaine) => {
 
 const capitalize = (chaine) => {
   if (typeof chaine !== 'string' || chaine === '') return '';
-  return chaine.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  return chaine.split(" ").map((word) => ucfirst(word.toLowerCase())).join(" ");
 };
 
 const camelCase = (chaine) => {
   if (typeof chaine !== 'string' || chaine === '') return '';
-  return chaine.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
+  return capitalize(chaine).replace(/\W/g, "");
 };
 
 const snake_case = (chaine) => {
@@ -26,7 +26,7 @@ const leet = (chaine) => {
 };
 
 const prop_access = (object, chemin) => {
-  if (typeof object !== 'object' || object === null) return 'Is not a object';
+  if (typeof object !== 'object' || object === null) return console.log('Is not a object');
   if (typeof chemin !== 'string' || chemin === '') return object;
   chemin.split('.').forEach(child => {
     if (typeof object[child] === 'undefined') {
@@ -40,9 +40,7 @@ const prop_access = (object, chemin) => {
 
 function verlan(chaine) {
   if (typeof chaine !== 'string' || chaine === '') return '';
-  let result = '';
-  chaine.split(' ').map(word => word.split('.').map(letter => result += letter.split('').reverse().join('') + ' ').join(' '));
-  return result;
+  return chaine.split(" ").map((word) => word.split("").reverse().join("")).join(" ");
 }
 
 function yoda(chaine) {
@@ -50,13 +48,13 @@ function yoda(chaine) {
   return chaine.split(' ').reverse().join(' ');
 }
 
-// const chaine = 'bonjour le portugal';
+const chaine = 'bonjour le portugal';
 //
 // console.log('ucfirst : ', ucfirst(chaine));
 //
 // console.log('capitalize : ', capitalize(chaine));
 //
-// console.log('camelCase : ', camelCase(chaine));
+console.log('camelCase : ', camelCase('toggleCase is the coolest'));
 //
 // console.log('snake_case : ', snake_case(chaine));
 //
