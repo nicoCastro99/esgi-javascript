@@ -25,12 +25,17 @@ const leet = (chaine) => {
   return chaine;
 };
 
-const pro_access = (object, chemin) => {
+const prop_access = (object, chemin) => {
   if (typeof object !== 'object' || object === null) return 'Is not a object';
   if (typeof chemin !== 'string' || chemin === '') return object;
-  let error = '';
-  chemin.split('.').map(child => typeof object[child] === 'undefined' && error === '' ? error = chemin.split(child)[0] + child + ' not exist' : object = object[child]);
-  return error ? error : object;
+  chemin.split('.').forEach(child => {
+    if (typeof object[child] === 'undefined') {
+      console.log(chemin.split(child)[0] + child + ' not exist');
+      return;
+    }
+    object = object[child];
+  });
+  return object;
 };
 
 function verlan(chaine) {
@@ -45,21 +50,21 @@ function yoda(chaine) {
   return chaine.split(' ').reverse().join(' ');
 }
 
-const chaine = 'bonjour le portugal';
-
-console.log('ucfirst : ', ucfirst(chaine));
-
-console.log('capitalize : ', capitalize(chaine));
-
-console.log('camelCase : ', camelCase(chaine));
-
-console.log('snake_case : ', snake_case(chaine));
-
-console.log('leet : ', leet(chaine));
-
-const prairie = {animal:{type: {name: 'chien'}}};
-console.log('pro_access : ', pro_access(prairie, 'animal.typee'));
-
-console.log('verlan : ', verlan(chaine));
-
-console.log('yoda : ', yoda(chaine));
+// const chaine = 'bonjour le portugal';
+//
+// console.log('ucfirst : ', ucfirst(chaine));
+//
+// console.log('capitalize : ', capitalize(chaine));
+//
+// console.log('camelCase : ', camelCase(chaine));
+//
+// console.log('snake_case : ', snake_case(chaine));
+//
+// console.log('leet : ', leet(chaine));
+//
+// const prairie = {animal:{type: {name: 'chien'}}};
+// console.log('prop_access : ', prop_access(prairie, 'animal.type'));
+//
+// console.log('verlan : ', verlan(chaine));
+//
+// console.log('yoda : ', yoda(chaine));
