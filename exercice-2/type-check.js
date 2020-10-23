@@ -56,7 +56,7 @@ function type_check_v2(variable, config) {
 // console.log(type_check_v2('bar', {type: 'string', value: 'foo'}));
 // console.log(type_check_v2(3, {enum: ['foo', 'bar', 3], type: 'number'}));
 
-function typeCheck(variable, types) {
+function type_check(variable, types) {
   if (!types.properties) return type_check_v2(variable, types);
   for (const props in types.properties) {
     if (!typeCheck(type_check_v1(arg, 'object') ? variable[props] : variable, types.properties[props])) return false;
