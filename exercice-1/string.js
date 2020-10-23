@@ -10,6 +10,7 @@ const capitalize = (chaine) => {
 
 const camelCase = (chaine) => {
   if (typeof chaine !== 'string' || chaine === '') return '';
+  chaine = chaine.replace("_", " ");
   return capitalize(chaine).replace(/\W/g, "");
 };
 
@@ -26,7 +27,7 @@ const leet = (chaine) => {
 };
 
 const prop_access = (object, chemin) => {
-  if (typeof object !== 'object' || object === null) return console.log('Is not a object');
+  if (typeof object !== 'object' || object === null) return console.log(chemin + " not exist");;
   if (typeof chemin !== 'string' || chemin === '') return object;
   chemin.split('.').forEach(child => {
     if (typeof object[child] === 'undefined') {
@@ -54,7 +55,7 @@ const chaine = 'bonjour le portugal';
 //
 // console.log('capitalize : ', capitalize(chaine));
 //
-console.log('camelCase : ', camelCase('toggleCase is the coolest'));
+console.log('camelCase : ', camelCase('ToggleCase is_the coolest'));
 //
 // console.log('snake_case : ', snake_case(chaine));
 //

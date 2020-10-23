@@ -39,20 +39,22 @@ function type_check_v2(variable, config) {
         break;
       case 'enum':
         if (!Array.isArray(config['enum'])) return false;
+        let found = false;
         for (const element of config['enum']) {
-          if (JSON.stringify(element) === JSON.stringify(variable)) {
-            return true;
-          }
+          found = JSON.stringify(element) === JSON.stringify(variable);
+          if (found) break;
         }
-        return false;
+        if (!found) return false;
+        break;
     }
   }
   return true;
 }
+
 // console.log(type_check_v2({prop1: 1}, {type: 'object'}));
 // console.log(type_check_v2('foo', {type: 'string', value: 'foo'}));
 // console.log(type_check_v2('bar', {type: 'string', value: 'foo'}));
-// console.log(type_check_v2(3, {enum: ['foo', 'bar', 3]}));
+// console.log(type_check_v2(3, {enum: ['foo', 'bar', 3], type: 'number'}));
 
 function type_check(variable, types) {
   if (!types.properties) return type_check_v2(variable, types);
