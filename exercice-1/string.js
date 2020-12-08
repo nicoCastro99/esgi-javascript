@@ -10,8 +10,7 @@ const capitalize = (chaine) => {
 
 const camelCase = (chaine) => {
   if (typeof chaine !== 'string' || chaine === '') return '';
-  chaine = chaine.replace("_", " ");
-  return capitalize(chaine).replace(/\W/g, "");
+  return capitalize(chaine.replace(/[_-]/g, ' ')).replace(/[\s+]/g, '');
 };
 
 const snake_case = (chaine) => {
@@ -27,15 +26,14 @@ const leet = (chaine) => {
 };
 
 const prop_access = (object, chemin) => {
-  if (typeof object !== 'object' || object === null) return console.log(chemin + " not exist");;
+  if (typeof object !== 'object' || object === null) return chemin + ' not exist';
   if (typeof chemin !== 'string' || chemin === '') return object;
-  chemin.split('.').forEach(child => {
+  for (let child of chemin.split('.')) {
     if (typeof object[child] === 'undefined') {
-      console.log(chemin.split(child)[0] + child + ' not exist');
-      return;
+      return chemin.split(child)[0] + child + ' not exist';
     }
     object = object[child];
-  });
+  }
   return object;
 };
 
@@ -49,13 +47,13 @@ function yoda(chaine) {
   return chaine.split(' ').reverse().join(' ');
 }
 
-const chaine = 'bonjour le portugal';
+// const chaine = 'bonjour le portugal';
 //
 // console.log('ucfirst : ', ucfirst(chaine));
 //
 // console.log('capitalize : ', capitalize(chaine));
 //
-console.log('camelCase : ', camelCase('ToggleCase is_the coolest'));
+// console.log('camelCase : ', camelCase('ToggleCase is_the coolest'));
 //
 // console.log('snake_case : ', snake_case(chaine));
 //
