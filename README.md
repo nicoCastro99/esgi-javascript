@@ -1,4 +1,4 @@
-# esgi-javascript 
+# esgi-javascript
 
 cmd : docker-compose run node node ./exercice-1/string.js
 cmd : docker-compose run node node ./exercice-2/type-check.js
